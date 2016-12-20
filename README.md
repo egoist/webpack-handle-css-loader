@@ -45,7 +45,10 @@ Default: `undefined`
 
 The loader you wanna use, eg: `sass-loader` `postcss-loader`, when it's undefined only `style-loader` and `css-loader` will be applied.
 
-Note that we use `css-loader?-autoprefixer&sourceMap` too:
+### cssLoader:
+
+Type: `string`<br>
+Default: `css-loader?-autoprefixer&sourceMap`
 
 - `-autoprefixer`: you should handle this by yourself, otherwise letting webpack handle it leads to mismatch between development build and production build.
 - `sourceMap`: only have effect when your set `devtool` option in your webpack config.
