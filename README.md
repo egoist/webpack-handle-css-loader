@@ -57,7 +57,7 @@ Default: `/\.css$/`
 
 The regular expression for matching files.
 
-#### env
+##### env
 
 Type: `string`
 
