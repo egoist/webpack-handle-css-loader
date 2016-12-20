@@ -1,0 +1,45 @@
+{
+  "name": "webpack-handle-css-loader",
+  "version": "0.0.0",
+  "description": "A little helper module for adding CSS and CSS extraction support in webpack.",
+  "license": "MIT",
+  "repository": "egoist/webpack-handle-css-loader",
+  "author": {
+    "name": "EGOIST",
+    "email": "0x142857@gmail.com",
+    "url": "github.com/egoist"
+  },
+  "engines": {
+    "node": ">=4"
+  },
+  "scripts": {
+    "test": "jest && eslint src/*.js && npm run bili",
+    "bili": "bili --name index"
+  },
+  "files": [
+    "dist"
+  ],
+  "main": "dist/index.common.js",
+  "keywords": [
+    "css-loader",
+    "webpack"
+  ],
+  "devDependencies": {
+    "babel-preset-es2015": "^6.18.0",
+    "bili": "^0.9.1",
+    "eslint": "latest",
+    "eslint-config-rem": "latest",
+    "extract-text-webpack-plugin": "2.0.0-beta.4",
+    "jest-cli": "^15.1.1",
+    "webpack": "2.2.0-rc.1"
+  },
+  "jest": {
+    "testEnvironment": "node"
+  },
+  "eslintConfig": {
+    "extends": "rem/esnext"
+  },
+  "peerDependencies": {
+    "extract-text-webpack-plugin": "*"
+  }
+}
