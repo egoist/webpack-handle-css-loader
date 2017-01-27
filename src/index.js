@@ -34,7 +34,7 @@ function handle({
 
 handle.vue = options => {
   options = Object.assign({
-    fallbackLoader = 'vue-style-loader'
+    fallbackLoader: 'vue-style-loader'
   }, options)
   const {loader, loaders} = handle(options)
   if (loader) {

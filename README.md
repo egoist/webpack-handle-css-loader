@@ -40,7 +40,7 @@ module.exports = {
 
 ##### loader
 
-Type: `string`<br>
+Type: `string` `Array`<br>
 Default: `undefined`
 
 The loader you wanna use, eg: `sass-loader` `postcss-loader`, when it's undefined only `style-loader` and `css-loader` will be applied.
