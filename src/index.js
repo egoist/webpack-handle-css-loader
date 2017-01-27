@@ -15,7 +15,7 @@ export default function ({
   if (prod) {
     return {
       loader: ExtractTextPlugin.extract({
-        fallbackLoader: fallbackLoader,
+        fallbackLoader,
         loader: loaders
       }),
       test
