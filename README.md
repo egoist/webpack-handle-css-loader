@@ -71,6 +71,23 @@ Type: `string`
 
 Optionally use `env` option if you don't want to set `process.env.NODE_ENV`
 
+### cssLoader.vue([options])
+
+Get loader for `vue-loader` 's `loaders` options, eg:
+
+```js
+{
+  test: /\.vue$/,
+  loader: 'vue-loader',
+  options: {
+    loaders: {
+      css: cssLoader.vue(),
+      stylus: cssLoader.vue({loader: 'stylus-loader'})
+    }
+  }
+}
+```
+
 ## Contributing
 
 1. Fork it!
