@@ -3,6 +3,7 @@ import ExtractTextPlugin from 'extract-text-webpack-plugin'
 export default function ({
   loader,
   cssLoader = 'css-loader?-autoprefixer&sourceMap',
+  fallbackLoader = 'style-loader',
   test = /\.css$/,
   env
 } = {}) {
@@ -14,14 +15,14 @@ export default function ({
   if (prod) {
     return {
       loader: ExtractTextPlugin.extract({
-        fallbackLoader: 'style-loader',
+        fallbackLoader,
         loader: loaders
       }),
       test
     }
   }
   return {
-    loaders: ['style-loader', ...loaders],
+    loaders: [fallbackLoader, ...loaders],
     test
   }
 }
