@@ -42,12 +42,19 @@ export default class HandleCSSLoader {
     }]
 
     if (loader !== 'postcss-loader' && this.postcssOptions !== false) {
+      const postcssOptions = {
+        sourceMap: this.sourceMap
+      }
+
+      if (Array.isArray(this.postcssOptions)) {
+        postcssOptions.plugins = this.postcssOptions
+      } else if (typeof this.postcssOptions === 'object') {
+        Object.assign(postcssOptions, this.postcssOptions)
+      }
+
       use.push({
         loader: 'postcss-loader',
-        options: {
-          ...this.postcssOptions,
-          sourceMap: this.sourceMap
-        }
+        options: postcssOptions
       })
     }
 
