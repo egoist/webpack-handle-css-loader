@@ -80,6 +80,13 @@ Default: `style-loader`
 Type: `string`<br>
 Default: `css-loader`
 
+##### cssModules
+
+Type: `boolean`<br>
+Default: `undefined`
+
+Enable CSS modules.
+
 ### handleLoader.getLoader(test, loader, options)
 
 #### test

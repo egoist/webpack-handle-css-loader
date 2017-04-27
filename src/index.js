@@ -7,7 +7,8 @@ export default class HandleCSSLoader {
     postcss,
     sourceMap,
     extract,
-    minimize
+    minimize,
+    cssModules
   } = {}) {
     this.fallbackLoader = fallbackLoader
     this.cssLoader = cssLoader
@@ -15,17 +16,31 @@ export default class HandleCSSLoader {
     this.sourceMap = sourceMap
     this.extract = extract
     this.minimize = minimize
+    this.cssModules = cssModules
   }
 
-  getLoader(test, loader, options) {
+  getLoader(test, loader, options = {}) {
+    const cssLoaderOptions = {
+      autoprefixer: false,
+      sourceMap: this.sourceMap,
+      minimize: this.minimize
+    }
+
+    if (this.cssModules) {
+      cssLoaderOptions.modules = true
+      cssLoaderOptions.importLoaders = 1
+      cssLoaderOptions.localIdentName = '[name]_[local]__[hash:base64:5]'
+    }
+
+    if (loader === 'css-loader') {
+      Object.assign(cssLoaderOptions, options)
+    }
+
     const use = [{
       loader: this.cssLoader,
-      options: {
-        autoprefixer: false,
-        sourceMap: this.sourceMap,
-        minimize: this.minimize
-      }
+      options: cssLoaderOptions
     }]
+
     if (loader !== 'postcss-loader' && this.postcssOptions !== false) {
       use.push({
         loader: 'postcss-loader',
@@ -35,6 +50,7 @@ export default class HandleCSSLoader {
         }
       })
     }
+
     if (loader && loader !== 'css-loader') {
       use.push({
         loader,
@@ -44,6 +60,7 @@ export default class HandleCSSLoader {
         }
       })
     }
+
     return {
       test,
       use: this.extract ? ExtractTextPlugin.extract({
@@ -53,29 +70,30 @@ export default class HandleCSSLoader {
     }
   }
 
-  css() {
-    return this.getLoader(/\.css$/, 'css-loader')
+  css(options) {
+    return this.getLoader(/\.css$/, 'css-loader', options)
   }
 
-  sass() {
+  sass(options = {}) {
     return this.getLoader(/\.sass$/, 'sass-loader', {
-      indentedSyntax: true
+      indentedSyntax: true,
+      ...options
     })
   }
 
-  scss() {
-    return this.getLoader(/\.scss$/, 'sass-loader')
+  scss(options) {
+    return this.getLoader(/\.scss$/, 'sass-loader', options)
   }
 
-  less() {
-    return this.getLoader(/\.less$/, 'less-loader')
+  less(options) {
+    return this.getLoader(/\.less$/, 'less-loader', options)
   }
 
-  stylus() {
-    return this.getLoader(/\.stylus$/, 'stylue-loader')
+  stylus(options) {
+    return this.getLoader(/\.stylus$/, 'stylue-loader', options)
   }
 
-  styl() {
-    return this.getLoader(/\.styl$/, 'stylue-loader')
+  styl(options) {
+    return this.getLoader(/\.styl$/, 'stylue-loader', options)
   }
 }
