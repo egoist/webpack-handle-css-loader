@@ -97,10 +97,10 @@ export default class HandleCSSLoader {
   }
 
   stylus(options) {
-    return this.getLoader(/\.stylus$/, 'stylue-loader', options)
+    return this.getLoader(/\.stylus$/, 'stylus-loader', options)
   }
 
   styl(options) {
-    return this.getLoader(/\.styl$/, 'stylue-loader', options)
+    return this.getLoader(/\.styl$/, 'stylus-loader', options)
   }
 }
