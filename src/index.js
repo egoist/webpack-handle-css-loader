@@ -1,46 +1,81 @@
 import ExtractTextPlugin from 'extract-text-webpack-plugin'
 
-function handle({
-  loader,
-  cssLoader = 'css-loader?-autoprefixer',
-  fallbackLoader = 'style-loader',
-  test = /\.css$/,
-  env
-} = {}) {
-  const prod = (process.env.NODE_ENV === 'production') || (env === 'production')
-
-  let loaders = [cssLoader]
-
-  if (Array.isArray(loader)) {
-    loaders = [...loaders, ...loader]
-  } else if (loader) {
-    loaders = [...loaders, loader]
+export default class HandleCSSLoader {
+  constructor({
+    fallbackLoader = 'style-loader',
+    cssLoader = 'css-loader',
+    postcss,
+    sourceMap,
+    extract,
+    minimize
+  } = {}) {
+    this.fallbackLoader = fallbackLoader
+    this.cssLoader = cssLoader
+    this.postcssOptions = postcss
+    this.sourceMap = sourceMap
+    this.extract = extract
+    this.minimize = minimize
   }
 
-  if (prod) {
+  getLoader(test, loader, options) {
+    const use = [{
+      loader: this.cssLoader,
+      options: {
+        autoprefixer: false,
+        sourceMap: this.sourceMap,
+        minimize: this.minimize
+      }
+    }]
+    if (loader !== 'postcss-loader' && this.postcssOptions !== false) {
+      use.push({
+        loader: 'postcss-loader',
+        options: {
+          ...this.postcssOptions,
+          sourceMap: this.sourceMap
+        }
+      })
+    }
+    if (loader && loader !== 'css-loader') {
+      use.push({
+        loader,
+        options: {
+          ...options,
+          sourceMap: this.sourceMap
+        }
+      })
+    }
     return {
-      loader: ExtractTextPlugin.extract({
-        fallbackLoader,
-        loader: loaders
-      }),
-      test
+      test,
+      use: this.extract ? ExtractTextPlugin.extract({
+        use,
+        fallback: this.fallbackLoader
+      }) : use
     }
   }
-  return {
-    loaders: [fallbackLoader, ...loaders],
-    test
+
+  css() {
+    return this.getLoader(/\.css$/, 'css-loader')
+  }
+
+  sass() {
+    return this.getLoader(/\.sass$/, 'sass-loader', {
+      indentedSyntax: true
+    })
+  }
+
+  scss() {
+    return this.getLoader(/\.scss$/, 'sass-loader')
+  }
+
+  less() {
+    return this.getLoader(/\.less$/, 'less-loader')
+  }
+
+  stylus() {
+    return this.getLoader(/\.(stylus|styl)$/, 'stylue-loader')
+  }
+
+  styl() {
+    return this.getLoader(/\.(stylus|styl)$/, 'stylue-loader')
   }
 }
-
-handle.vue = options => {
-  options = Object.assign({
-    fallbackLoader: 'vue-style-loader'
-  }, options)
-  const {loader, loaders} = handle(options)
-  if (loader) {
-    return loader
-  }
-  return loaders.join('!')
-}
-
-export default handle

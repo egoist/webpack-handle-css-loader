@@ -1,18 +1,25 @@
-import cssLoader from '../src'
+import HandleCSSLoader from '../src'
 
-test('main', () => {
-  const loader = cssLoader()
-  expect(loader).toEqual({
-    loaders: ['style-loader', 'css-loader?-autoprefixer'],
-    test: /\.css$/
+test('simple', () => {
+  const getLoader = new HandleCSSLoader()
+  expect(getLoader.css()).toEqual(require('./fixture/empty-options'))
+})
+
+test('sourcemap', () => {
+  const getLoader = new HandleCSSLoader({
+    sourceMap: true
   })
+  expect(getLoader.css()).toEqual(require('./fixture/sourcemap'))
+})
 
-  const sassLoader = cssLoader({loader: 'sass-loader', test: /\.scss$/})
-  expect(sassLoader).toEqual({
-    loaders: ['style-loader', 'css-loader?-autoprefixer', 'sass-loader'],
-    test: /\.scss$/
+test('minimize', () => {
+  const getLoader = new HandleCSSLoader({
+    minimize: true
   })
+  expect(getLoader.css()).toEqual(require('./fixture/minimize'))
+})
 
-  const postcssLoader = cssLoader({loader: 'postcss-loader', env: 'production'})
-  expect(typeof postcssLoader.loader).toBe('string')
+test('built-in sass loader', () => {
+  const getLoader = new HandleCSSLoader()
+  expect(getLoader.sass()).toEqual(require('./fixture/sass'))
 })

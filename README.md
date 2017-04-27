@@ -13,17 +13,24 @@ $ npm install --save webpack-handle-css-loader
 ## Usage
 
 ```js
-const cssLoader = require('webpack-handle-css-loader')
+const HandleCSSLoader = require('webpack-handle-css-loader')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
+
+const production = process.env.NODE_ENV === 'production'
+
+const handleLoader = new HandleCSSLoader({
+  minimize: production,
+  extract: production
+})
 
 module.exports = {
   module: {
     rules: [
-      // css-loader support
-      // when process.env.NODE_ENV === 'production' css will be extracted into a single file
-      cssLoader(),
-      // similar to above but add sass-loader too
-      cssLoader({loader: 'sass-loader', test: /\.scss$/})
+      // Handle .css files with css-loader & postcss-loader
+      handleLoader.css(),
+      // Handle .sass files
+      // Similar to above but add sass-loader too
+      handleLoader.sass()
     ]
   },
   plugins: [
@@ -34,59 +41,74 @@ module.exports = {
 
 ## API
 
-### cssLoader([options])
+```js
+const handleLoader = new HandlerCSSLoader()
+```
+
+### new HandleCSSLoader([options])
 
 #### options
 
-##### loader
+##### minimize
 
-Type: `string` `Array`<br>
+Type: `boolean`<br>
 Default: `undefined`
 
-The loader you wanna use, eg: `sass-loader` `postcss-loader`, when it's undefined only `style-loader` and `css-loader` will be applied.
+Minimize CSS.
 
-##### cssLoader
+##### extract
 
-Type: `string`<br>
-Default: `css-loader?-autoprefixer&sourceMap`
+Type: `boolean`<br>
+Default: `undefined`
 
-- `-autoprefixer`: you should handle this by yourself, otherwise letting webpack handle it leads to mismatch between development build and production build.
-- `sourceMap`: only have effect when your set `devtool` option in your webpack config.
+Extract CSS.
+
+##### sourceMap
+
+Type: `boolean` `string`<br>
+Default: `undefined`
+
+Enable sourcemaps.
 
 ##### fallbackLoader
 
 Type: `string`<br>
 Default: `style-loader`
 
-##### test
+##### cssLoader
 
-Type: `RegExp`<br>
-Default: `/\.css$/`
+Type: `string`<br>
+Default: `css-loader`
 
-The regular expression for matching files.
+### handleLoader.getLoader(test, loader, options)
 
-##### env
+#### test
+
+Type: `RegExp`
+
+#### loader
 
 Type: `string`
 
-Optionally use `env` option if you don't want to set `process.env.NODE_ENV`
+Loader name or the path to it.
 
-### cssLoader.vue([options])
+#### options
 
-Get loader for `vue-loader` 's `loaders` options, eg:
+Type: `any`
 
-```js
-{
-  test: /\.vue$/,
-  loader: 'vue-loader',
-  options: {
-    loaders: {
-      css: cssLoader.vue(),
-      stylus: cssLoader.vue({loader: 'stylus-loader'})
-    }
-  }
-}
-```
+Loader options.
+
+### handleLoader.css()
+
+Alias to `handleLoader.getLoader(/\.css$/, 'css-loader')`
+
+### handleLoader.sass()
+
+### handleLoader.scss()
+
+### handleLoader.stylus()
+
+### handleLoader.styl()
 
 ## Contributing
 
