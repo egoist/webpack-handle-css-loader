@@ -1,6 +1,9 @@
 module.exports = {
   test: /\.sass$/,
   use: [{
+    loader: 'style-loader',
+    sourceMap: undefined
+  }, {
     loader: 'css-loader',
     options: {
       autoprefixer: false,

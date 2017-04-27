@@ -74,7 +74,8 @@ export default class HandleCSSLoader {
         use,
         fallback: this.fallbackLoader
       }) : [{
-        loader: this.fallbackLoader
+        loader: this.fallbackLoader,
+        sourceMap: this.sourceMap
       }, ...use]
     }
   }
