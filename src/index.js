@@ -73,7 +73,9 @@ export default class HandleCSSLoader {
       use: this.extract ? ExtractTextPlugin.extract({
         use,
         fallback: this.fallbackLoader
-      }) : use
+      }) : [{
+        loader: this.fallbackLoader
+      }, ...use]
     }
   }
 
