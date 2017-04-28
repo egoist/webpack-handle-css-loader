@@ -36,14 +36,17 @@ module.exports = {
     ]
   },
   plugins: [
-    new ExtractTextPlugin('[name].[contenthash:8].css')
+    new ExtractTextPlugin({
+      filename: '[name].[contenthash:8].css',
+      disable: !isProd
+    })
   ]
 }
 ```
 
 > **Note:**
 >
-> We add `postcss-loader` to each rule, which mean in `handleLoader.css()` you got something like `['style-loader', 'css-loader', 'postcss-loader']`, see [here](#postcss) about how to disable it or set options for it.
+> We add `postcss-loader` to each rule, which means in `handleLoader.css()` you got something like `['style-loader', 'css-loader', 'postcss-loader']`, see [here](#postcss) for how to disable it or set options for it.
 
 ## API
 
