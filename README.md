@@ -16,11 +16,13 @@ $ npm install --save webpack-handle-css-loader
 const HandleCSSLoader = require('webpack-handle-css-loader')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
-const production = process.env.NODE_ENV === 'production'
+const isProd = process.env.NODE_ENV === 'production'
 
 const handleLoader = new HandleCSSLoader({
-  minimize: production,
-  extract: production
+  minimize: isProd,
+  extract: isProd,
+  sourceMap: false,
+  cssModules: false
 })
 
 module.exports = {
@@ -38,6 +40,10 @@ module.exports = {
   ]
 }
 ```
+
+> **Note:**
+>
+> We add `postcss-loader` to each rule, which mean in `handleLoader.css()` you got something like `['style-loader', 'css-loader', 'postcss-loader']`, see [here](#postcss) about how to disable it or set options for it.
 
 ## API
 
