@@ -87,6 +87,12 @@ Default: `undefined`
 
 Enable CSS modules.
 
+##### postcss
+
+Type: `object` `Array` `boolean`
+
+PostCSS options, set it to `false` to disable adding `postcss-loader` for every rule.
+
 ### handleLoader.getLoader(test, loader, options)
 
 #### test
