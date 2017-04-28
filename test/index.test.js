@@ -23,3 +23,9 @@ test('built-in sass loader', () => {
   const getLoader = new HandleCSSLoader()
   expect(getLoader.sass()).toEqual(require('./fixture/sass'))
 })
+
+test('extract', () => {
+  const getLoader = new HandleCSSLoader({ extract: true, sourceMap: true })
+  const { use } = getLoader.css()
+  expect(use[0].loader).toMatch(/extract-text-webpack-plugin/)
+})
