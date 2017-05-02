@@ -158,6 +158,16 @@ handleLoader.vue({
 
 Note: `postcss-loader` is always disabled here, since `vue-loader` has it built-in.
 
+`cssModules` is also disable, since you should activate it like this in single-file component:
+
+```vue
+<style module>
+  .foo {
+    color: red;
+  }
+</style>
+```
+
 ## Contributing
 
 1. Fork it!
