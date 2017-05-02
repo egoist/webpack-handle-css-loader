@@ -120,9 +120,9 @@ Type: `any`
 
 Loader options.
 
-### handleLoader.css()
+### handleLoader.css(options)
 
-Alias to `handleLoader.getLoader(/\.css$/, 'css-loader')`
+Alias to `handleLoader.getLoader(/\.css$/, 'css-loader', options)`
 
 ### handleLoader.sass()
 
@@ -131,6 +131,32 @@ Alias to `handleLoader.getLoader(/\.css$/, 'css-loader')`
 ### handleLoader.stylus()
 
 ### handleLoader.styl()
+
+### handleLoader.vue(options)
+
+Get CSS loaders for `vue-loader`:
+
+```js
+{
+  loader: 'vue-loader',
+  options: {
+    loaders: handleLoader.vue()
+  }
+}
+```
+
+You can use `options[lang]` to set options for specifc loader:
+
+```js
+handleLoader.vue({
+  css: {}, // options for css-loader
+  stylus: {}, // options for stylus-loader
+  styl: {}, // same as above
+  // ...
+})
+```
+
+Note: `postcss-loader` is always disabled here, since `vue-loader` has it built-in.
 
 ## Contributing
 

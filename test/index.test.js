@@ -29,3 +29,11 @@ test('extract', () => {
   const { use } = getLoader.css()
   expect(use[0].loader).toMatch(/extract-text-webpack-plugin/)
 })
+
+test('vue', () => {
+  const getLoader = new HandleCSSLoader()
+  const loaders = getLoader.vue()
+  expect(Object.keys(loaders)).toEqual([
+    'css', 'sass', 'scss', 'less', 'stylus', 'styl'
+  ])
+})

@@ -108,4 +108,13 @@ export default class HandleCSSLoader {
   styl(options) {
     return this.getLoader(/\.styl$/, 'stylus-loader', options)
   }
+
+  vue(options = {}) {
+    this.postcssOptions = false
+    const loaders = {}
+    for (const lang of ['css', 'sass', 'scss', 'less', 'stylus', 'styl']) {
+      loaders[lang] = this[lang](options[lang]).use
+    }
+    return loaders
+  }
 }
