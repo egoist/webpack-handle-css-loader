@@ -31,7 +31,6 @@ export default class HandleCSSLoader {
 
   /**
    * Get the rule for specific loader
-   * @name  HandleCSSLoader.prototype.getLoader
    * @param  {RegExp} [test=undefined] File matcher
    * @param  {RegExp} [loader=undefined] Loader name or path to it
    * @param  {any} [options=undefined] Options for relevant loader
@@ -102,7 +101,6 @@ export default class HandleCSSLoader {
 
   /**
    * Get the rule for css files
-   * @name  HandleCSSLoader.prototype.css
    * @param  {RegExp} [test=/\.css$/]    File matcher
    * @param  {any} [options=undefined] Options for css-loader
    * @return {Object} {@link https://webpack.js.org/configuration/module/#rule webpack Rule}
@@ -114,7 +112,6 @@ export default class HandleCSSLoader {
 
   /**
    * Get the rule for sass files
-   * @name  HandleCSSLoader.prototype.sass
    * @param  {RegExp} [test=/\.sass$/] File matcher
    * @param  {any} [options=undefined] Options for sass-loader, `indentedSyntax` for sass-loader is `true` here
    * @return {Object} {@link https://webpack.js.org/configuration/module/#rule webpack Rule}
@@ -129,7 +126,6 @@ export default class HandleCSSLoader {
 
   /**
    * Get the rule for scss files
-   * @name  HandleCSSLoader.prototype.scss
    * @param  {RegExp} [test=/\.scss$/]    File matcher
    * @param  {any} [options=undefined] Options for sass-loader
    * @return {Object} {@link https://webpack.js.org/configuration/module/#rule webpack Rule}
@@ -141,7 +137,6 @@ export default class HandleCSSLoader {
 
   /**
    * Get the rule for less files
-   * @name  HandleCSSLoader.prototype.less
    * @param  {RegExp} [test=/\.less$/] File matcher
    * @param  {any} [options=undefined] Options for less-loader
    * @return {Object} [Rule] {@link https://webpack.js.org/configuration/module/#rule webpack Rule}
@@ -153,7 +148,6 @@ export default class HandleCSSLoader {
 
   /**
    * Get the rule for stylus files
-   * @name  HandleCSSLoader.prototype.stylus
    * @param  {RegExp} [test=/\.stylus$/] File matcher
    * @param  {any} [options=undefined] Options for stylus-loader
    * @return {Object} {@link https://webpack.js.org/configuration/module/#rule webpack Rule}
@@ -165,7 +159,6 @@ export default class HandleCSSLoader {
 
   /**
    * Get the rule for styl files
-   * @name  HandleCSSLoader.prototype.styl
    * @param  {RegExp} [test=/\.styl$/] File matcher
    * @param  {any} [options=undefined] Options for stylus-loader
    * @return {Object} {@link https://webpack.js.org/configuration/module/#rule webpack Rule}
@@ -177,7 +170,6 @@ export default class HandleCSSLoader {
 
   /**
    * Get the `loaders` options for vue-loader
-   * @name  HandleCSSLoader.prototype.vue
    * @param  {any} [options={}] Options for relevant loaders
    * @return {Object}
    * @example

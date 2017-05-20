@@ -65,7 +65,7 @@ module.exports = {
     -   `options.minimize` **[boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** Minimize CSS. (optional, default `undefined`)
     -   `options.cssModules` **[boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** Enable CSS modules. (optional, default `undefined`)
 
-### HandleCSSLoader.prototype.getLoader
+### getLoader
 
 Get the rule for specific loader
 
@@ -77,7 +77,7 @@ Get the rule for specific loader
 
 Returns **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** [webpack Rule](https://webpack.js.org/configuration/module/#rule)
 
-### HandleCSSLoader.prototype.css
+### css
 
 Get the rule for css files
 
@@ -88,7 +88,7 @@ Get the rule for css files
 
 Returns **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** [webpack Rule](https://webpack.js.org/configuration/module/#rule)
 
-### HandleCSSLoader.prototype.sass
+### sass
 
 Get the rule for sass files
 
@@ -99,7 +99,7 @@ Get the rule for sass files
 
 Returns **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** [webpack Rule](https://webpack.js.org/configuration/module/#rule)
 
-### HandleCSSLoader.prototype.scss
+### scss
 
 Get the rule for scss files
 
@@ -110,7 +110,7 @@ Get the rule for scss files
 
 Returns **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** [webpack Rule](https://webpack.js.org/configuration/module/#rule)
 
-### HandleCSSLoader.prototype.less
+### less
 
 Get the rule for less files
 
@@ -121,7 +121,7 @@ Get the rule for less files
 
 Returns **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** [Rule] [webpack Rule](https://webpack.js.org/configuration/module/#rule)
 
-### HandleCSSLoader.prototype.stylus
+### stylus
 
 Get the rule for stylus files
 
@@ -132,7 +132,7 @@ Get the rule for stylus files
 
 Returns **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** [webpack Rule](https://webpack.js.org/configuration/module/#rule)
 
-### HandleCSSLoader.prototype.styl
+### styl
 
 Get the rule for styl files
 
@@ -143,7 +143,7 @@ Get the rule for styl files
 
 Returns **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** [webpack Rule](https://webpack.js.org/configuration/module/#rule)
 
-### HandleCSSLoader.prototype.vue
+### vue
 
 Get the `loaders` options for vue-loader
 
