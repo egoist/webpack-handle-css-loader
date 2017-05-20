@@ -1,6 +1,16 @@
 import ExtractTextPlugin from 'extract-text-webpack-plugin'
 
 export default class HandleCSSLoader {
+  /**
+   * @param {Object} options
+   * @param {string} [options.fallbackLoader='style-loader'] fallback loader.
+   * @param {string} [options.cssLoader='css-loader'] css-loader name or path.
+   * @param {Object|boolean} [options.postcss=undefined] Options for  postcss-loader.
+   * @param {boolean} [options.sourceMap=undefined] Enable sourcemaps.
+   * @param {boolean} [options.extract=undefined] Extract CSS.
+   * @param {boolean} [options.minimize=undefined] Minimize CSS.
+   * @param {boolean} [options.cssModules=undefined]  Enable CSS modules.
+   */
   constructor({
     fallbackLoader = 'style-loader',
     cssLoader = 'css-loader',
@@ -19,6 +29,14 @@ export default class HandleCSSLoader {
     this.cssModules = cssModules
   }
 
+  /**
+   * Get the rule for specific loader
+   * @name  HandleCSSLoader.prototype.getLoader
+   * @param  {RegExp} [test=undefined] File matcher
+   * @param  {RegExp} [loader=undefined] Loader name or path to it
+   * @param  {any} [options=undefined] Options for relevant loader
+   * @return {Object} {@link https://webpack.js.org/configuration/module/#rule webpack Rule}
+   */
   getLoader(test, loader, options = {}) {
     const cssLoaderOptions = {
       autoprefixer: false,
@@ -82,39 +100,98 @@ export default class HandleCSSLoader {
     }
   }
 
-  css(options) {
-    return this.getLoader(/\.css$/, 'css-loader', options)
+  /**
+   * Get the rule for css files
+   * @name  HandleCSSLoader.prototype.css
+   * @param  {RegExp} [test=/\.css$/]    File matcher
+   * @param  {any} [options=undefined] Options for css-loader
+   * @return {Object} {@link https://webpack.js.org/configuration/module/#rule webpack Rule}
+   */
+  css(test, options) {
+    test = test || /\.css$/
+    return this.getLoader(test, 'css-loader', options)
   }
 
-  sass(options = {}) {
-    return this.getLoader(/\.sass$/, 'sass-loader', {
+  /**
+   * Get the rule for sass files
+   * @name  HandleCSSLoader.prototype.sass
+   * @param  {RegExp} [test=/\.sass$/] File matcher
+   * @param  {any} [options=undefined] Options for sass-loader, `indentedSyntax` for sass-loader is `true` here
+   * @return {Object} {@link https://webpack.js.org/configuration/module/#rule webpack Rule}
+   */
+  sass(test, options = {}) {
+    test = test || /\.sass$/
+    return this.getLoader(test, 'sass-loader', {
       indentedSyntax: true,
       ...options
     })
   }
 
-  scss(options) {
-    return this.getLoader(/\.scss$/, 'sass-loader', options)
+  /**
+   * Get the rule for scss files
+   * @name  HandleCSSLoader.prototype.scss
+   * @param  {RegExp} [test=/\.scss$/]    File matcher
+   * @param  {any} [options=undefined] Options for sass-loader
+   * @return {Object} {@link https://webpack.js.org/configuration/module/#rule webpack Rule}
+   */
+  scss(test, options) {
+    test = test || /\.scss$/
+    return this.getLoader(test, 'sass-loader', options)
   }
 
-  less(options) {
-    return this.getLoader(/\.less$/, 'less-loader', options)
+  /**
+   * Get the rule for less files
+   * @name  HandleCSSLoader.prototype.less
+   * @param  {RegExp} [test=/\.less$/] File matcher
+   * @param  {any} [options=undefined] Options for less-loader
+   * @return {Object} [Rule] {@link https://webpack.js.org/configuration/module/#rule webpack Rule}
+   */
+  less(test, options) {
+    test = test || /\.less$/
+    return this.getLoader(test, 'less-loader', options)
   }
 
-  stylus(options) {
-    return this.getLoader(/\.stylus$/, 'stylus-loader', options)
+  /**
+   * Get the rule for stylus files
+   * @name  HandleCSSLoader.prototype.stylus
+   * @param  {RegExp} [test=/\.stylus$/] File matcher
+   * @param  {any} [options=undefined] Options for stylus-loader
+   * @return {Object} {@link https://webpack.js.org/configuration/module/#rule webpack Rule}
+   */
+  stylus(test, options) {
+    test = test || /\.stylus$/
+    return this.getLoader(test, 'stylus-loader', options)
   }
 
-  styl(options) {
-    return this.getLoader(/\.styl$/, 'stylus-loader', options)
+  /**
+   * Get the rule for styl files
+   * @name  HandleCSSLoader.prototype.styl
+   * @param  {RegExp} [test=/\.styl$/] File matcher
+   * @param  {any} [options=undefined] Options for stylus-loader
+   * @return {Object} {@link https://webpack.js.org/configuration/module/#rule webpack Rule}
+   */
+  styl(test, options) {
+    test = test || /\.styl$/
+    return this.getLoader(test, 'stylus-loader', options)
   }
 
+  /**
+   * Get the `loaders` options for vue-loader
+   * @name  HandleCSSLoader.prototype.vue
+   * @param  {any} [options={}] Options for relevant loaders
+   * @return {Object}
+   * @example
+   * handleLoader.vue({
+   *  scss: {},
+   *  less: {}
+   * })
+   */
   vue(options = {}) {
     this.postcssOptions = false
     this.cssModules = false
     const loaders = {}
     for (const lang of ['css', 'sass', 'scss', 'less', 'stylus', 'styl']) {
-      loaders[lang] = this[lang](options[lang]).use
+      loaders[lang] = this[lang](null, options[lang]).use
     }
     return loaders
   }

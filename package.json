@@ -14,7 +14,8 @@
   },
   "scripts": {
     "test": "jest && xo && npm run build",
-    "build": "bili --name index"
+    "build": "bili --name index",
+    "docs": "documentation readme src/index.js -s API"
   },
   "files": [
     "dist"
@@ -28,6 +29,7 @@
     "babel-preset-env": "^1.4.0",
     "babel-preset-stage-2": "^6.24.1",
     "bili": "^0.14.2",
+    "documentation": "^4.0.0-rc.1",
     "eslint-config-rem": "^3.0.1",
     "extract-text-webpack-plugin": "^2.1.0",
     "jest-cli": "^19.0.2",
