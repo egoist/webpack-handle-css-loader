@@ -65,6 +65,15 @@ module.exports = {
     -   `options.minimize` **[boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** Minimize CSS. (optional, default `undefined`)
     -   `options.cssModules` **[boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** Enable CSS modules. (optional, default `undefined`)
 
+### set
+
+Set value of instance option
+
+**Parameters**
+
+-   `key` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+-   `value` **any** 
+
 ### getLoader
 
 Get the rule for specific loader

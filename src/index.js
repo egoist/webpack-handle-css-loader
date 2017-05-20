@@ -30,6 +30,15 @@ export default class HandleCSSLoader {
   }
 
   /**
+   * Set value of instance option
+   * @param {string} key
+   * @param {any} value
+   */
+  set(key, value) {
+    this[key] = value
+  }
+
+  /**
    * Get the rule for specific loader
    * @param  {RegExp} [test=undefined] File matcher
    * @param  {RegExp} [loader=undefined] Loader name or path to it
