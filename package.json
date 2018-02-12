@@ -20,7 +20,7 @@
   "files": [
     "dist"
   ],
-  "main": "dist/index.common.js",
+  "main": "dist/index.cjs.js",
   "keywords": [
     "css-loader",
     "webpack"
@@ -28,7 +28,7 @@
   "devDependencies": {
     "babel-preset-env": "^1.4.0",
     "babel-preset-stage-2": "^6.24.1",
-    "bili": "^0.14.2",
+    "bili": "^2.2.6",
     "documentation": "^4.0.0-rc.1",
     "eslint-config-rem": "^3.0.1",
     "extract-text-webpack-plugin": "^2.1.0",
