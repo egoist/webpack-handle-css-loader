@@ -44,8 +44,5 @@
     "envs": [
       "jest"
     ]
-  },
-  "peerDependencies": {
-    "extract-text-webpack-plugin": "*"
   }
 }

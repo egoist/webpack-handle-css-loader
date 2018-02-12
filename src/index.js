@@ -1,4 +1,4 @@
-import ExtractTextPlugin from 'extract-text-webpack-plugin'
+import _ExtractTextPlugin from 'extract-text-webpack-plugin'
 
 export default class HandleCSSLoader {
   /**
@@ -18,7 +18,8 @@ export default class HandleCSSLoader {
     sourceMap,
     extract,
     minimize,
-    cssModules
+    cssModules,
+    ExtractTextPlugin = _ExtractTextPlugin
   } = {}) {
     this.fallbackLoader = fallbackLoader
     this.cssLoader = cssLoader
@@ -27,6 +28,7 @@ export default class HandleCSSLoader {
     this.extract = extract
     this.minimize = minimize
     this.cssModules = cssModules
+    this.ExtractTextPlugin = ExtractTextPlugin
   }
 
   /**
@@ -96,7 +98,7 @@ export default class HandleCSSLoader {
 
     return {
       test,
-      use: this.extract ? ExtractTextPlugin.extract({
+      use: this.extract ? this.ExtractTextPlugin.extract({
         use,
         fallback: this.fallbackLoader
       }) : [{
