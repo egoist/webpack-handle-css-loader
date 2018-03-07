@@ -31,9 +31,9 @@
     "bili": "^2.2.6",
     "documentation": "^4.0.0-rc.1",
     "eslint-config-rem": "^3.0.1",
-    "extract-text-webpack-plugin": "^2.1.0",
     "jest-cli": "^19.0.2",
-    "webpack": "^2.4.1",
+    "mini-css-extract-plugin": "^0.1.0",
+    "webpack": "^4.1.0",
     "xo": "^0.18.1"
   },
   "jest": {

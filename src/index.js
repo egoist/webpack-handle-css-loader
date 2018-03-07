@@ -17,7 +17,7 @@ export default class HandleCSSLoader {
     extract,
     minimize,
     cssModules,
-    ExtractTextPlugin
+    extractLoader
   } = {}) {
     this.fallbackLoader = fallbackLoader
     this.cssLoader = cssLoader
@@ -26,9 +26,9 @@ export default class HandleCSSLoader {
     this.extract = extract
     this.minimize = minimize
     this.cssModules = cssModules
-    this.ExtractTextPlugin = ExtractTextPlugin
-    if (extract && !this.ExtractTextPlugin) {
-      this.ExtractTextPlugin = require('extract-text-webpack-plugin')
+    this.extractLoader = extractLoader
+    if (extract && !this.extractLoader) {
+      this.extractLoader = require.resolve('mini-css-extract-plugin/dist/loader')
     }
   }
 
@@ -65,10 +65,12 @@ export default class HandleCSSLoader {
       Object.assign(cssLoaderOptions, options)
     }
 
-    const use = [{
-      loader: this.cssLoader,
-      options: cssLoaderOptions
-    }]
+    const use = [
+      {
+        loader: this.cssLoader,
+        options: cssLoaderOptions
+      }
+    ]
 
     if (loader !== 'postcss-loader' && this.postcssOptions !== false) {
       const postcssOptions = {
@@ -99,15 +101,22 @@ export default class HandleCSSLoader {
 
     return {
       test,
-      use: this.extract ? this.ExtractTextPlugin.extract({
-        use,
-        fallback: this.fallbackLoader
-      }) : [{
-        loader: this.fallbackLoader,
-        options: {
-          sourceMap: this.sourceMap
-        }
-      }, ...use]
+      use: this.extract ?
+      [
+        {
+          loader: this.extractLoader
+        },
+        ...use
+      ] :
+      [
+        {
+          loader: this.fallbackLoader,
+          options: {
+            sourceMap: this.sourceMap
+          }
+        },
+        ...use
+      ]
     }
   }
 
