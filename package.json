@@ -7,20 +7,21 @@
   "author": {
     "name": "EGOIST",
     "email": "0x142857@gmail.com",
-    "url": "github.com/egoist"
+    "url": "https://github.com/egoist"
   },
   "engines": {
     "node": ">=4"
   },
   "scripts": {
-    "test": "jest && xo && npm run build",
-    "build": "bili --name index",
+    "prepublishOnly": "npm run build",
+    "test": "jest && xo",
+    "build": "bili --name index --target node --no-babel.babelrc",
     "docs": "documentation readme src/index.js -s API"
   },
   "files": [
     "dist"
   ],
-  "main": "dist/index.cjs.js",
+  "main": "dist/webpack-handle-css-loader.cjs.js",
   "keywords": [
     "css-loader",
     "webpack"
@@ -28,11 +29,11 @@
   "devDependencies": {
     "babel-preset-env": "^1.4.0",
     "babel-preset-stage-2": "^6.24.1",
-    "bili": "^2.2.6",
+    "bili": "^3.0.4",
     "documentation": "^4.0.0-rc.1",
     "eslint-config-rem": "^3.0.1",
     "jest-cli": "^19.0.2",
-    "mini-css-extract-plugin": "^0.1.0",
+    "mini-css-extract-plugin": "^0.2.0",
     "webpack": "^4.1.0",
     "xo": "^0.18.1"
   },

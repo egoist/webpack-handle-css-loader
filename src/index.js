@@ -1,16 +1,17 @@
 export default class HandleCSSLoader {
   /**
    * @param {Object} options
-   * @param {string} [options.fallbackLoader='style-loader'] fallback loader.
+   * @param {string} [options.styleLoader='style-loader'] style-loader name or path.
    * @param {string} [options.cssLoader='css-loader'] css-loader name or path.
-   * @param {Object|boolean} [options.postcss=undefined] Options for  postcss-loader.
+   * @param {string} [options.extractLoader='mini-css-extract-plugin/dist/loader'] loader path of mini-css-extract-plugin.
+   * @param {Object|boolean} [options.postcss=undefined] Disable or set options for  postcss-loader.
    * @param {boolean} [options.sourceMap=undefined] Enable sourcemaps.
-   * @param {boolean} [options.extract=undefined] Extract CSS.
-   * @param {boolean} [options.minimize=undefined] Minimize CSS.
+   * @param {boolean} [options.extract=undefined] Enable CSS extraction.
+   * @param {boolean} [options.minimize=undefined] Enable CSS minimization.
    * @param {boolean} [options.cssModules=undefined]  Enable CSS modules.
    */
   constructor({
-    fallbackLoader = 'style-loader',
+    styleLoader = 'style-loader',
     cssLoader = 'css-loader',
     postcss,
     sourceMap,
@@ -19,7 +20,7 @@ export default class HandleCSSLoader {
     cssModules,
     extractLoader
   } = {}) {
-    this.fallbackLoader = fallbackLoader
+    this.styleLoader = styleLoader
     this.cssLoader = cssLoader
     this.postcssOptions = postcss
     this.sourceMap = sourceMap
@@ -110,7 +111,7 @@ export default class HandleCSSLoader {
       ] :
       [
         {
-          loader: this.fallbackLoader,
+          loader: this.styleLoader,
           options: {
             sourceMap: this.sourceMap
           }

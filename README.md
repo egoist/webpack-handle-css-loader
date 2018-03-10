@@ -7,14 +7,18 @@ This is a short-hand module for adding css and extracting css support.
 ## Install
 
 ```bash
-$ npm install --save webpack-handle-css-loader
+yarn add webpack-handle-css-loader
+
+# If you want to extract this
+# Install this plugin as well
+yarn add mini-css-extract-plugin
 ```
 
 ## Usage
 
 ```js
 const HandleCSSLoader = require('webpack-handle-css-loader')
-const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 
 const isProd = process.env.NODE_ENV === 'production'
 
@@ -36,11 +40,13 @@ module.exports = {
     ]
   },
   plugins: [
-    new ExtractTextPlugin({
-      filename: '[name].[contenthash:8].css',
-      disable: !isProd
+    isProd && new MiniCssExtractPlugin({
+      // Options similar to the same options in webpackOptions.output
+      // both options are optional
+      filename: "[name].css",
+      chunkFilename: "[id].css"
     })
-  ]
+  ].filter(Boolean)
 }
 ```
 
@@ -57,13 +63,14 @@ module.exports = {
 **Parameters**
 
 -   `options` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)**  (optional, default `{}`)
-    -   `options.fallbackLoader` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** fallback loader. (optional, default `'style-loader'`)
+    -   `options.styleLoader` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** style-loader name or path. (optional, default `'style-loader'`)
     -   `options.cssLoader` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** css-loader name or path. (optional, default `'css-loader'`)
-    -   `options.postcss` **([Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object) \| [boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean))** Options for  postcss-loader. (optional, default `undefined`)
+    -   `options.postcss` **([Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object) \| [boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean))** Disable or set options for  postcss-loader. (optional, default `undefined`)
     -   `options.sourceMap` **[boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** Enable sourcemaps. (optional, default `undefined`)
-    -   `options.extract` **[boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** Extract CSS. (optional, default `undefined`)
-    -   `options.minimize` **[boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** Minimize CSS. (optional, default `undefined`)
+    -   `options.extract` **[boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** Enable CSS extraction. (optional, default `undefined`)
+    -   `options.minimize` **[boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** Enable CSS minimization. (optional, default `undefined`)
     -   `options.cssModules` **[boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** Enable CSS modules. (optional, default `undefined`)
+    -   `options.extractLoader` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** loader path of mini-css-extract-plugin. (optional, default `'mini-css-extract-plugin/dist/loader'`)
 
 ### set
 
@@ -184,4 +191,4 @@ Returns **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Refer
 **webpack-handle-css-loader** © [EGOIST](https://github.com/egoist), Released under the [MIT](https://egoist.mit-license.org/) License.<br>
 Authored and maintained by EGOIST with help from contributors ([list](https://github.com/egoist/webpack-handle-css-loader/contributors)).
 
-> [egoistian.com](https://egoistian.com) · GitHub [@egoist](https://github.com/egoist) · Twitter [@_egoistlily](https://twitter.com/_egoistlily)
+> [egoistian.com](https://egoistian.com) · GitHub [@egoist](https://github.com/egoist) · Twitter [@\_egoistlily](https://twitter.com/_egoistlily)
