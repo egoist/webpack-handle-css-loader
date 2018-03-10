@@ -27,7 +27,7 @@ test('built-in sass loader', () => {
 test('extract', () => {
   const getLoader = new HandleCSSLoader({ extract: true, sourceMap: true })
   const { use } = getLoader.css()
-  expect(use[0].loader).toMatch(/extract-text-webpack-plugin/)
+  expect(use[0].loader).toMatch(/mini-css-extract-plugin\/dist\/loader/)
 })
 
 test('vue', () => {
