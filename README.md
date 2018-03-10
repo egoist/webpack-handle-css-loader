@@ -9,7 +9,7 @@ This is a short-hand module for adding css and extracting css support.
 ```bash
 yarn add webpack-handle-css-loader
 
-# If you want to extract this
+# If you want to extract CSS
 # Install this plugin as well
 yarn add mini-css-extract-plugin
 ```
