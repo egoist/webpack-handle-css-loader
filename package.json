@@ -15,7 +15,7 @@
   "scripts": {
     "prepublishOnly": "npm run build",
     "test": "jest && xo",
-    "build": "bili --name index --target node --no-babel.babelrc",
+    "build": "bili --target node --no-babel.babelrc",
     "docs": "documentation readme src/index.js -s API"
   },
   "files": [
