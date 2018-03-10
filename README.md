@@ -18,7 +18,7 @@ yarn add mini-css-extract-plugin
 
 ```js
 const HandleCSSLoader = require('webpack-handle-css-loader')
-const MiniCssExtractPlugin = require("mini-css-extract-plugin")
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 const isProd = process.env.NODE_ENV === 'production'
 
