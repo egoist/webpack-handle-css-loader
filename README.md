@@ -52,7 +52,7 @@ module.exports = {
 
 > **Note:**
 >
-> We add `postcss-loader` to each rule, which means in `handleLoader.css()` you got something like `['style-loader', 'css-loader', 'postcss-loader']`, see [here](#postcss) for how to disable it or set options for it.
+> We add `postcss-loader` to each rule, which means in `handleLoader.css()` you got something like `['style-loader', 'css-loader', 'postcss-loader']`, see [here](#constructor) for how to disable it or set options for it.
 
 ## API
 
