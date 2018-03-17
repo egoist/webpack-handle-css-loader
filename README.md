@@ -64,6 +64,7 @@ module.exports = {
 
 -   `options` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)**  (optional, default `{}`)
     -   `options.styleLoader` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** style-loader name or path. (optional, default `'style-loader'`)
+    -   `options.cacheLoader` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** cache-loader name or path. (optional, default `'cache-loader'`)
     -   `options.cssLoader` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** css-loader name or path. (optional, default `'css-loader'`)
     -   `options.postcss` **([Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object) \| [boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean))** Disable or set options for  postcss-loader. (optional, default `undefined`)
     -   `options.sourceMap` **[boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** Enable sourcemaps. (optional, default `undefined`)
