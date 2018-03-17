@@ -14,6 +14,7 @@ export default class HandleCSSLoader {
     styleLoader = 'style-loader',
     cssLoader = 'css-loader',
     cacheLoader = 'cache-loader',
+    cache = true,
     postcss,
     sourceMap,
     extract,
@@ -24,6 +25,7 @@ export default class HandleCSSLoader {
     this.styleLoader = styleLoader
     this.cssLoader = cssLoader
     this.cacheLoader = cacheLoader
+    this.cache = cache
     this.postcssOptions = postcss
     this.sourceMap = sourceMap
     this.extract = extract
@@ -79,7 +81,7 @@ export default class HandleCSSLoader {
       cacheDirectory: 'node_modules/cache-loader/.cache'
     }
 
-    if (this.cacheLoader) {
+    if (this.cache) {
       use.unshift({
         loader: this.cacheLoader,
         options: cacheLoaderOptions

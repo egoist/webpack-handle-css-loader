@@ -68,6 +68,7 @@ module.exports = {
     -   `options.cssLoader` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** css-loader name or path. (optional, default `'css-loader'`)
     -   `options.postcss` **([Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object) \| [boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean))** Disable or set options for  postcss-loader. (optional, default `undefined`)
     -   `options.sourceMap` **[boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** Enable sourcemaps. (optional, default `undefined`)
+    -   `options.cache` **[boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** Cache artifacts between builds. (optional, default `true`)
     -   `options.extract` **[boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** Enable CSS extraction. (optional, default `undefined`)
     -   `options.minimize` **[boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** Enable CSS minimization. (optional, default `undefined`)
     -   `options.cssModules` **[boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** Enable CSS modules. (optional, default `undefined`)
