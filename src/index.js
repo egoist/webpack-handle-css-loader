@@ -13,6 +13,8 @@ export default class HandleCSSLoader {
   constructor({
     styleLoader = 'style-loader',
     cssLoader = 'css-loader',
+    cacheLoader = 'cache-loader',
+    cache = true,
     postcss,
     sourceMap,
     extract,
@@ -22,6 +24,8 @@ export default class HandleCSSLoader {
   } = {}) {
     this.styleLoader = styleLoader
     this.cssLoader = cssLoader
+    this.cacheLoader = cacheLoader
+    this.cache = cache
     this.postcssOptions = postcss
     this.sourceMap = sourceMap
     this.extract = extract
@@ -72,6 +76,17 @@ export default class HandleCSSLoader {
         options: cssLoaderOptions
       }
     ]
+
+    const cacheLoaderOptions = {
+      cacheDirectory: 'node_modules/cache-loader/.cache'
+    }
+
+    if (this.cache) {
+      use.unshift({
+        loader: this.cacheLoader,
+        options: cacheLoaderOptions
+      })
+    }
 
     if (loader !== 'postcss-loader' && this.postcssOptions !== false) {
       const postcssOptions = {

@@ -6,6 +6,11 @@ module.exports = {
       sourceMap: true
     }
   }, {
+    loader: 'cache-loader',
+    options: {
+      cacheDirectory: 'node_modules/cache-loader/.cache',
+    }
+  }, {
     loader: 'css-loader',
     options: {
       autoprefixer: false,
